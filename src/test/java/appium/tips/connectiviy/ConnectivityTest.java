@@ -1,5 +1,7 @@
 package appium.tips.connectiviy;
 
+import static org.junit.Assert.*;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -8,8 +10,8 @@ import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.NetworkConnectionSetting;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.Connection;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
 
@@ -22,38 +24,28 @@ public class ConnectivityTest {
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 		dc.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
-
-		// informamos o nome do dispositivo onde o teste será executado
-		dc.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+		dc.setCapability(MobileCapabilityType.DEVICE_NAME, "0010754427");
 
 		AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"), dc);
 
-		// inicia com wifi e dados moveis ligados, e com modo avião desligado 
-		NetworkConnectionSetting ncs = new NetworkConnectionSetting(false, true, true);
-		driver.setNetworkConnection(ncs);
+		// turn on all (data and wi-fi)
+		driver.setConnection(Connection.ALL);
+		assertEquals(Connection.ALL, driver.getConnection());
 		
-		// desliga wi-fi
-		ncs.setWifi(false);
-		driver.setNetworkConnection(ncs);
+		// turn off all (data and wi-fi)
+		driver.setConnection(Connection.NONE);
+		assertEquals(Connection.NONE, driver.getConnection());
 		
-		// desliga dados moveis
-		ncs.setData(false);
-		driver.setNetworkConnection(ncs);
+		// turn on airplane
+		driver.setConnection(Connection.AIRPLANE);
+		assertEquals(Connection.AIRPLANE, driver.getConnection());
 		
-		// liga o modo aviao
-		ncs.setAirplaneMode(true);
-		driver.setNetworkConnection(ncs);
+		// turn on data
+		driver.setConnection(Connection.DATA);
+		assertEquals(Connection.DATA, driver.getConnection());
 		
-		// desliga modo aviao
-		ncs.setAirplaneMode(true);
-		driver.setNetworkConnection(ncs);
-		
-		// liga dados moveis
-		ncs.setData(true);
-		driver.setNetworkConnection(ncs);
-		
-		// liga wi-fi
-		ncs.setWifi(true);
-		driver.setNetworkConnection(ncs);		
+		// tunr on wi-fi
+		driver.setConnection(Connection.WIFI);		
+		assertEquals(Connection.WIFI, driver.getConnection());
 	}
 }

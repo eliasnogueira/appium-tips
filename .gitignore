@@ -58,3 +58,6 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+/screenshots/
+
+*.png

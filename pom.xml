@@ -7,7 +7,7 @@
 	<name>Appium Tips</name>
 
 	<properties>
-		<appium-version>3.3.0</appium-version>
+		<appium-version>4.0.0</appium-version>
 	</properties>
 
 	<dependencies>
