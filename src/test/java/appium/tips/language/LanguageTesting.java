@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Rule;
@@ -38,9 +40,10 @@ public class LanguageTesting {
 		dc.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 		dc.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
 		dc.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+		dc.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
 		
 		dc.setCapability("language", "pt");
-		
+
 		driver = new AndroidDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"), dc);
 		
 		driver.findElement(By.id("com.eliasnogueira.internacionalizacao:id/email_sign_in_button")).click();

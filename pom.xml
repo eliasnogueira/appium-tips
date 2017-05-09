@@ -7,7 +7,8 @@
 	<name>Appium Tips</name>
 
 	<properties>
-		<appium-version>4.0.0</appium-version>
+		<appium-version>5.0.0-BETA8</appium-version>
+		<junit-version>4.12</junit-version>
 	</properties>
 
 	<dependencies>
@@ -15,6 +16,12 @@
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
 			<version>${appium-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
 		</dependency>
 	</dependencies>
 
